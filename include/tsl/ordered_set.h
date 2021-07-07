@@ -780,23 +780,21 @@ class ordered_set {
     return set;
   }
 
+  // https://github.com/Tessil/robin-map/blob/a603419b9a0687c9148e02c8bd5e3db180bb9ac0/include/tsl/robin_set.h#L570
   friend bool operator==(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht == rhs.m_ht;
+    if (lhs.size() != rhs.size()) {
+      return false;
+    }
+    for (const auto& element_lhs : lhs) {
+      const auto it_element_rhs = rhs.find(element_lhs);
+      if (it_element_rhs == rhs.cend()) {
+        return false;
+      }
+    }
+    return true;
   }
   friend bool operator!=(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht != rhs.m_ht;
-  }
-  friend bool operator<(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht < rhs.m_ht;
-  }
-  friend bool operator<=(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht <= rhs.m_ht;
-  }
-  friend bool operator>(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht > rhs.m_ht;
-  }
-  friend bool operator>=(const ordered_set& lhs, const ordered_set& rhs) {
-    return lhs.m_ht >= rhs.m_ht;
+    return !operator==(lhs, rhs);
   }
 
   friend void swap(ordered_set& lhs, ordered_set& rhs) { lhs.swap(rhs); }

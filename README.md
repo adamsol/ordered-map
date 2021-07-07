@@ -1,3 +1,10 @@
+
+Changes relative to the original repository:
+
+* Made comparison operators `==` and `!=` order-insensitive and removed the remaining 4 operators.
+
+---
+
 [![Build Status](https://travis-ci.org/Tessil/ordered-map.svg?branch=master)](https://travis-ci.org/Tessil/ordered-map) [![Build status](https://ci.appveyor.com/api/projects/status/7fug7piv59d0in36/branch/master?svg=true)](https://ci.appveyor.com/project/Tessil/ordered-map/branch/master)
 
 ## C++ hash map and hash set which preserves the order of insertion

@@ -945,23 +945,22 @@ class ordered_map {
     return map;
   }
 
+  // https://github.com/Tessil/robin-map/blob/a603419b9a0687c9148e02c8bd5e3db180bb9ac0/include/tsl/robin_map.h#L768
   friend bool operator==(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht == rhs.m_ht;
+    if (lhs.size() != rhs.size()) {
+      return false;
+    }
+    for (const auto& element_lhs : lhs) {
+      const auto it_element_rhs = rhs.find(element_lhs.first);
+      if (it_element_rhs == rhs.cend() ||
+          element_lhs.second != it_element_rhs->second) {
+        return false;
+      }
+    }
+    return true;
   }
   friend bool operator!=(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht != rhs.m_ht;
-  }
-  friend bool operator<(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht < rhs.m_ht;
-  }
-  friend bool operator<=(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht <= rhs.m_ht;
-  }
-  friend bool operator>(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht > rhs.m_ht;
-  }
-  friend bool operator>=(const ordered_map& lhs, const ordered_map& rhs) {
-    return lhs.m_ht >= rhs.m_ht;
+    return !operator==(lhs, rhs);
   }
 
   friend void swap(ordered_map& lhs, ordered_map& rhs) { lhs.swap(rhs); }

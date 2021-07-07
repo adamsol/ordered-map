@@ -748,23 +748,9 @@ BOOST_AUTO_TEST_CASE(test_compare) {
   const tsl::ordered_map<std::string, int> map = {{"D", 1}, {"L", 2}, {"A", 3}};
 
   BOOST_ASSERT(map == (tsl::ordered_map<std::string, int>{
-                          {"D", 1}, {"L", 2}, {"A", 3}}));
-  BOOST_ASSERT(map != (tsl::ordered_map<std::string, int>{
                           {"L", 2}, {"D", 1}, {"A", 3}}));
-
-  BOOST_ASSERT(
-      map < (tsl::ordered_map<std::string, int>{{"D", 1}, {"L", 2}, {"B", 3}}));
-  BOOST_ASSERT(map <= (tsl::ordered_map<std::string, int>{
-                          {"D", 1}, {"L", 2}, {"B", 3}}));
-  BOOST_ASSERT(map <= (tsl::ordered_map<std::string, int>{
-                          {"D", 1}, {"L", 2}, {"A", 3}}));
-
-  BOOST_ASSERT(
-      map > (tsl::ordered_map<std::string, int>{{"D", 1}, {"K", 2}, {"A", 3}}));
-  BOOST_ASSERT(map >= (tsl::ordered_map<std::string, int>{
-                          {"D", 1}, {"K", 2}, {"A", 3}}));
-  BOOST_ASSERT(map >= (tsl::ordered_map<std::string, int>{
-                          {"D", 1}, {"L", 2}, {"A", 3}}));
+  BOOST_ASSERT(map != (tsl::ordered_map<std::string, int>{
+                          {"D", 2}, {"L", 1}, {"A", 3}}));
 }
 
 /**

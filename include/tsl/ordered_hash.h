@@ -1108,30 +1108,6 @@ class ordered_hash : private Hash, private KeyEqual {
     deserialize_impl(deserializer, hash_compatible);
   }
 
-  friend bool operator==(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values == rhs.m_values;
-  }
-
-  friend bool operator!=(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values != rhs.m_values;
-  }
-
-  friend bool operator<(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values < rhs.m_values;
-  }
-
-  friend bool operator<=(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values <= rhs.m_values;
-  }
-
-  friend bool operator>(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values > rhs.m_values;
-  }
-
-  friend bool operator>=(const ordered_hash& lhs, const ordered_hash& rhs) {
-    return lhs.m_values >= rhs.m_values;
-  }
-
  private:
   template <class K>
   std::size_t hash_key(const K& key) const {
