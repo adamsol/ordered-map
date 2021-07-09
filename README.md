@@ -2,6 +2,7 @@
 Changes relative to the original repository:
 
 * Made comparison operators `==` and `!=` order-insensitive and removed the remaining 4 operators.
+* Replaced `std::deque` with `std::vector` for better performance.
 
 ---
 

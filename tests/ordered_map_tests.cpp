@@ -48,7 +48,7 @@ using test_types = boost::mpl::list<
     tsl::ordered_map<std::int64_t, std::int64_t, std::hash<std::int64_t>,
                      std::equal_to<std::int64_t>,
                      std::allocator<std::pair<std::int64_t, std::int64_t>>,
-                     std::vector<std::pair<std::int64_t, std::int64_t>>>,
+                     std::deque<std::pair<std::int64_t, std::int64_t>>>,
     tsl::ordered_map<std::string, std::string>,
     tsl::ordered_map<std::string, std::string, mod_hash<9>>,
     tsl::ordered_map<move_only_test, move_only_test, mod_hash<9>>>;
